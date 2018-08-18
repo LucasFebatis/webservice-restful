@@ -34,7 +34,7 @@ public class CarrinhoResource {
 	public Response adiciona(Carrinho carrinho) throws URISyntaxException {
 		new CarrinhoDAO().adiciona(carrinho);
 
-		URI uri = new URI("/carrinhos/" + carrinho.getId());
+		URI uri = new URI("/webservice-restful/rest/carrinhos/" + carrinho.getId());
 		return Response.created(uri).build();
 	}
 

@@ -22,20 +22,26 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+
 import br.com.alura.loja.modelo.Carrinho;
 import br.com.alura.loja.modelo.Produto;
 
 public class ClienteTest {
 
-	HttpServer server;
-	Client client;
-	WebTarget target;
+	static HttpServer server;
+	static Client client;
+	static WebTarget target;
 	
 	@BeforeAll
-	public void subirServidor() {
+	public static void subirServidor() {
 		// Configurando Servidor
 		URI uri = URI.create("http://localhost:8080/");
-		ResourceConfig config = new ResourceConfig().packages("br.com.alura.loja");
+		@SuppressWarnings("static-access")
+		ResourceConfig config = new ResourceConfig()
+				.forApplicationClass(ApplicationConfig.class)
+				.register(JacksonJsonProvider.class)
+				.packages("br.com.alura.loja");
 		
 		// Subindo Servidor
 		server = GrizzlyHttpServerFactory.createHttpServer(uri, config);
@@ -47,14 +53,14 @@ public class ClienteTest {
         clientConfig.register(feature);
 		
 		//Obtendo Client e Target
-		this.client = ClientBuilder.newClient();
-		this.target = client.target("http://localhost:8080");
+		client = ClientBuilder.newClient();
+		target = client.target("http://localhost:8080");
 		
 		System.out.println("Servidor rodando");
 	}
 	
 	@AfterAll
-	public void descerServidor() {
+	public static void descerServidor() {
 		server.shutdown();
 		System.out.println("Servidor parado");
 	}
