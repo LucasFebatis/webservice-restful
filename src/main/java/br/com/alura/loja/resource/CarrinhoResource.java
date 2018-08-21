@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.alura.loja.dao.CarrinhoDAO;
+import br.com.alura.loja.exception.CustomReasonPhraseException;
 import br.com.alura.loja.modelo.Carrinho;
 import br.com.alura.loja.modelo.Produto;
 
@@ -57,4 +58,12 @@ public class CarrinhoResource {
 
 		return Response.ok().build();
 	}
+	
+	//Erro Teste
+	@GET
+	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	public Carrinho lancarException(@PathParam("id") long id) throws CustomReasonPhraseException {
+		throw new CustomReasonPhraseException("Olá exception");
+	}
+	
 }

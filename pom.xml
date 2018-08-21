@@ -47,6 +47,13 @@
 			<version>1.4.10</version>
 		</dependency>
 
+		<!-- Jersey (LoggingFilter para Client) -->
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>2.27</version>
+		</dependency>
+
 		<!-- Serializador JSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.jaxrs</groupId>
@@ -58,13 +65,6 @@
 		<dependency>
 			<groupId>org.glassfish.jersey.inject</groupId>
 			<artifactId>jersey-hk2</artifactId>
-			<version>2.27</version>
-		</dependency>
-
-		<!-- Jersey (LoggingFilter para Client) -->
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-server</artifactId>
 			<version>2.27</version>
 		</dependency>
 
